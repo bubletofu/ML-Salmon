@@ -96,8 +96,9 @@ pip install -r requirements.txt
 
 ## Potential Resolution Steps
 - Update pip:
+```
 python -m pip install --upgrade pip
-
+```
 
 - Install build tools:
 + Windows: Install Visual C++ Build Tools.
@@ -114,42 +115,42 @@ python -m pip install --upgrade pip
 - Fork the main repository on GitHub.
 - Clone your fork:
 
-##
+```
 git clone https://github.com/bubletofu/ML-Salmon.git
 git remote add upstream https://github.com/bubletofu/ML-Salmon.git
-##
+```
 
 - Create a feature branch:
 
-##
+```
 git checkout -b feature/feature-name
-##
+```
 
 - Keep your fork update:
 
-##
+```
 git fetch upstream
 git checkout develop
 git merge upstream/develop
 git push origin develop
-##
+```
 
 - Develop feature branch:
 
-##
+```
 git add .
 git commit -m "description"
 git push origin feature-name
-##
+```
 
 - Rebase before submitting a Pull Request (PR):
 
-##
+```
 git checkout feature-name
 git fetch upstream
 git rebase upstream/develop
 git push -f origin feature-name
-##
+```
 
 - Create a Pull Request from your feature branch to the upstream main branch.
 
