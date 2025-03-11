@@ -77,15 +77,20 @@ class Train:
         print(f"Model trained with accuracy: {self.accuracy}")
         print(f"Classification Report:\n{self.classification_report}")
         return self.model
-
-
-
     
+    
+    # Step 7: Save the trained model
     def save_model(self, model_path):
+        directory = os.path.dirname(model_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)  # Create the directory if it doesn't exist
+
+        # Save the model to the specified path
         joblib.dump(self.model, model_path)
         print(f"Model saved to {model_path}")
         return model_path
-    
+
+
 
 
 
