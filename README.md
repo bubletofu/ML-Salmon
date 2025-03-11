@@ -59,14 +59,14 @@ Where:
 **1. Environment requirement:**
 - Python version: at least 3.9 (Recommended: 3.11)
 - Supported operating systems:
-+ Window 10/11
-+ MacOS
-+ Linux
+  - Window 10/11
+  - MacOS
+  - Linux
 ##
 **2. Setup steps:**
 - For Windows:
-+ Install Python from the official website.
-+ Open Command Prompt and run the following commands:
+  - Install Python from the official website.
+  - Open Command Prompt and run the following commands:
 
 
 ```
