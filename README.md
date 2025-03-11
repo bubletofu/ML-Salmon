@@ -114,7 +114,7 @@ python -m pip install --upgrade pip
 - Update requirements.txt whenever new dependencies are added.
 - Ensure consistent Python versions across the team.
 
-## Contributing
+
 # Follow these steps to contribute to the project:
 - Fork the main repository on GitHub.
 - Clone your fork:
