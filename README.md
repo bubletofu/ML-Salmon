@@ -80,8 +80,8 @@ pip install -r requirements.txt
 
 
 - For MacOS/Linux:
-+ Install Python using Homebrew (macOS) or your package manager (Linux).
-+ Run the following commands:
+  - Install Python using Homebrew (macOS) or your package manager (Linux).
+  - Run the following commands:
 
 ``` 
 # Create virtual environment
@@ -94,9 +94,9 @@ pip install -r requirements.txt
 
 ## Troubleshooting
 - Common Dependency Issues
-+ Ensure all team members use matching Python versions.
-+ Use pip freeze > requirements.txt to capture exact dependency versions.
-+ Check for architecture compatibility (x86/ARM).
+  - Ensure all team members use matching Python versions.
+  - Use pip freeze > requirements.txt to capture exact dependency versions.
+  - Check for architecture compatibility (x86/ARM).
 
 ## Potential Resolution Steps
 - Update pip:
@@ -105,9 +105,9 @@ python -m pip install --upgrade pip
 ```
 
 - Install build tools:
-+ Windows: Install Visual C++ Build Tools.
-+ macOS: Install Xcode Command Line Tools.
-+ Linux: Install the build-essential package.
+  - Windows: Install Visual C++ Build Tools.
+  - macOS: Install Xcode Command Line Tools.
+  - Linux: Install the build-essential package.
 
 ## Workflow
 - Always activate the virtual environment before starting development.
