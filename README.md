@@ -46,35 +46,6 @@ project_root/
 │   ├── test_models.py
 
 ```
-- project_root/
-  - README.md
-  - LICENSE
-  - requirements.txt
-  - dataset/                              # Data storage
-  - models/                              # Model artifacts
-  - notebooks/                           # Jupyter notebooks
-  - reports/
-  - src/                                 # Source code
-      - __init__.py
-      - config.py
-      - data/
-          - __init__.py
-          - make_dataset.py
-          - preprocess.py
-          - features/
-          - __init__.py
-          - build_features.py
-      - models/
-          - __init__.py
-          - predict_model.py
-          - train_model.py
-      - visualization/
-          - __init__.py
-          - visualize.py
-  - tests/                               # Unit tests
-      - __init__.py
-      - test_data.py
-      - test_models.py
 
 Where:
 - `notebooks/`: Jupyter notebooks for assignments and experiments.
