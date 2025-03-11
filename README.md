@@ -3,11 +3,11 @@ This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh U
 
 
 # ML member
-Võ Trúc Sơn: Decision tree & Neutral Network implement
-Lê Văn Đức Anh: Bayesian Graphical implement
-Cao Quế Phương: Data preprocessing & HMM Graphical implement 
-Nguyễn Đức Hạnh Nhi: Decision tree & Naive Bayes implement
-Nông Thục Khuê: Data preprocessing & HMM Graphical implement
+- Võ Trúc Sơn: Decision tree & Neutral Network implement
+- Lê Văn Đức Anh: Bayesian Graphical implement
+- Cao Quế Phương: Data preprocessing & HMM Graphical implement 
+- Nguyễn Đức Hạnh Nhi: Decision tree & Naive Bayes implement
+- Nông Thục Khuê: Data preprocessing & HMM Graphical implement
 
 # ML Course
 
