@@ -62,6 +62,7 @@ Where:
 + Window 10/11
 + MacOS
 + Linux
+##
 **2. Setup steps:**
 - For Windows:
 + Install Python from the official website.
