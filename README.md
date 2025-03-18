@@ -17,32 +17,30 @@ This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh U
 project_root/
 ├── README.md
 ├── LICENSE
-├── requirements.txt
-├── dataset/                              # Data storage
-├── models/                              # Model artifacts
-├── notebooks/                           # Jupyter notebooks
-├── reports/
-├── src/                                 # Source code
-│   ├── __init__.py
-│   ├── config.py
-│   ├── data/
-│   │   ├── __init__.py
-│   │   ├── make_dataset.py
-│   │   ├── preprocess.py
-│   ├── features/
-│   │   ├── __init__.py
-│   │   ├── build_features.py
-│   ├── models/
-│   │   ├── __init__.py
-│   │   ├── predict_model.py
-│   │   ├── train_model.py
-│   ├── visualization/
-│   │   ├── __init__.py
-│   │   ├── visualize.py
-├── tests/                               # Unit tests
-│   ├── __init__.py
-│   ├── test_data.py
-│   ├── test_models.py
+├── data/                                # Dữ liệu đầu vào
+│   ├── aclImdb/                        # Tập dữ liệu IMDb
+│   │   ├── train/                      # Dữ liệu huấn luyện
+│   │   │   ├── neg/                    # Đánh giá tiêu cực
+│   │   │   └── pos/                    # Đánh giá tích cực
+│   │   └── test/                       # Dữ liệu kiểm tra
+│   │       ├── neg/                    # Đánh giá tiêu cực
+│   │       └── pos/                    # Đánh giá tích cực
+├── models_trained/                     # Mô hình đã huấn luyện
+│   ├── trained_bayesian_network.pkl    # Mô hình Bayesian Network đã lưu
+│   ├── trained_decision_tree.pkl       # Mô hình Decision Tree đã lưu
+│   └── trained_neural_network.pkl      # Mô hình Neural Network đã lưu
+├── src/                                # Nguồn code
+│   ├── models/                         # File mô hình
+│   │   ├── predict_model.py            # File dự đoán
+│   │   ├── train_model_bayesian.py     # File huấn luyện Bayesian
+│   │   ├── train_model_decision.py     # File huấn luyện Decision Tree
+│   │   └── train_model_neural.py       # File huấn luyện Neural Network
+│   ├── __init__.py                     # Khởi tạo package
+├── tests/                              # Unit tests
+│   ├── __init__.py                     # Khởi tạo module test
+│   └── test_models.py                  # File test cho các mô hình
+├── requirements.txt                    # Danh sách thư viện phụ thuộc
+└── .gitignore                          # File bỏ qua cho Git
 
 ```
 
