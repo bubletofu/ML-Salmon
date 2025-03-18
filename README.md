@@ -114,7 +114,7 @@ python -m pip install --upgrade pip
 - Ensure consistent Python versions across the team.
 
 
-# Follow these steps to contribute to the project:
+## Follow these steps to contribute to the project:
 - Fork the main repository on GitHub.
 - Clone your fork:
 
