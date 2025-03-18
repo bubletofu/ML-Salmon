@@ -1,17 +1,14 @@
 # About
-This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh University of Technology (HCMUT). It serves as a centralized resource for students to access course materials, homework solutions, code, and project documentation.
+This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh University of Technology (HCMUT), containing the source code and the dataset used for both Assignment 1 and 2 of the course. 
 
 
-# ML member
+# ML_Salmon group members
 - Võ Trúc Sơn: Decision tree & Neutral Network implement
 - Lê Văn Đức Anh: Bayesian Graphical implement
 - Cao Quế Phương: Data preprocessing & HMM Graphical implement 
 - Nguyễn Đức Hạnh Nhi: Decision tree & Naive Bayes implement
 - Nông Thục Khuê: Data preprocessing & HMM Graphical implement
 
-# ML Course
-
-This repository contains materials, code, and notebooks for an ML course.
 
 ## Structure
 ```
