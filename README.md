@@ -9,8 +9,8 @@ This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh U
 - Cao Quế Phương: Data preprocessing & HMM Graphical implement 
 - Nguyễn Đức Hạnh Nhi: Decision tree & Naive Bayes implement
 - Nông Thục Khuê: Data preprocessing & HMM Graphical implement
-- 
-### Assignment  contribution
+
+### Assignment 2 contribution:
 
 ## Structure
 ```
