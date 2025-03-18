@@ -22,6 +22,7 @@ class HMM:
             beta = self._backward(X, scale_factors)
             
             # M-step: Update model parameters using the computed probabilities
+
             self._update_params(X, alpha, beta, scale_factors)
 
     def _forward(self, X):

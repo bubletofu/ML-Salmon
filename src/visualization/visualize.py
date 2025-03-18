@@ -2,7 +2,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from sklearn.metrics import confusion_matrix, roc_curve, auc
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
+vectorizer = TfidfVectorizer()
 # Function to plot sentiment distribution
 def plot_sentiment_distribution(train_df):
     sentiment_counts = train_df['sentiment'].value_counts()
@@ -16,7 +18,7 @@ def plot_sentiment_distribution(train_df):
 
 # Function to plot the top TF-IDF features
 def plot_top_tfidf_features(X_train_tfidf, vectorizer):
-    feature_names = np.array(vectorizer.get_feature_names())
+    feature_names = np.array(vectorizer.get_feature_names_out())
     tfidf_scores = X_train_tfidf.sum(axis=0).A1
     sorted_idx = np.argsort(tfidf_scores)[::-1]
 
