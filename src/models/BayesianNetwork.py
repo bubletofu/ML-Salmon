@@ -106,10 +106,14 @@ class BayesianGraph:
 
     @staticmethod
     def load_data(data_dir):
+        if not os.path.exists(data_dir):
+            raise FileNotFoundError(f"The specified data directory does not exist: {data_dir}")
         data = []
         labels = []
         for label, folder in enumerate(['neg', 'pos']):
             folder_path = os.path.join(data_dir, folder)
+            if not os.path.exists(folder_path):
+                raise FileNotFoundError(f"The specified folder does not exist: {folder_path}")
             for filename in os.listdir(folder_path):
                 file_path = os.path.join(folder_path, filename)
                 with open(file_path, 'r', encoding='utf-8') as file:
@@ -119,7 +123,9 @@ class BayesianGraph:
 
     @staticmethod
     def main():
-        train_data_dir = r"/content/ML-Salmon/data/aclImdb/train"
+        train_data_dir = r"c:\Users\ASUS\Documents\MachineLearning\ML-Salmon\ML-Salmon\data\aclImdb\train"
+        if not os.path.exists(train_data_dir):
+            raise FileNotFoundError(f"The training data directory does not exist: {train_data_dir}")
         data = BayesianGraph.load_data(train_data_dir)
 
         X = data['review']
@@ -129,7 +135,7 @@ class BayesianGraph:
         bg.train(X, y)
         print("Evaluation Metrics:", bg.evaluate())
 
-        model_save_path = r"/content/ML-Salmon/models_trained/trained_bayesian_network.pkl"
+        model_save_path = r"c:\Users\ASUS\Documents\MachineLearning\ML-Salmon\ML-Salmon\models_trained\trained_bayesian_network.pkl"
         bg.save_model(model_save_path)
         print(f"Model saved to {model_save_path}")
 
