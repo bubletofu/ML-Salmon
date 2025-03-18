@@ -3,14 +3,14 @@ This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh U
 
 
 # ML_Salmon group members
-*Assignment 1 contribution:*
+***Assignment 1 contribution:***
 - Võ Trúc Sơn: Decision tree & Neutral Network implement
 - Lê Văn Đức Anh: Bayesian Graphical implement
 - Cao Quế Phương: Data preprocessing & HMM Graphical implement 
 - Nguyễn Đức Hạnh Nhi: Decision tree & Naive Bayes implement
 - Nông Thục Khuê: Data preprocessing & HMM Graphical implement
 
-*Assignment 2 contribution:*
+***Assignment 2 contribution:***
 
 # Structure
 ```
@@ -59,7 +59,7 @@ Where:
   - Window 10/11
   - MacOS
   - Linux
-##
+
 **2. Setup steps:**
 - For Windows:
   - Install Python from the official website.
@@ -89,13 +89,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Troubleshooting
+# Troubleshooting
 - Common Dependency Issues
   - Ensure all team members use matching Python versions.
   - Use pip freeze > requirements.txt to capture exact dependency versions.
   - Check for architecture compatibility (x86/ARM).
 
-## Potential Resolution Steps
+# Potential Resolution Steps
 - Update pip:
 ```
 python -m pip install --upgrade pip
@@ -106,7 +106,7 @@ python -m pip install --upgrade pip
   - macOS: Install Xcode Command Line Tools.
   - Linux: Install the build-essential package.
 
-## Workflow
+# Workflow
 - Always activate the virtual environment before starting development.
 - Update requirements.txt whenever new dependencies are added.
 - Ensure consistent Python versions across the team.
@@ -155,7 +155,7 @@ git push -f origin feature-name
 
 - Create a Pull Request from your feature branch to the upstream main branch.
 
-## Key Points for Contributors
+# Key Points for Contributors
 - Never commit directly to main or develop.
 - Regularly sync your fork with the upstream repository.
 - Rebase feature branches before submitting PRs.
