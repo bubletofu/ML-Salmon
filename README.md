@@ -59,7 +59,7 @@ Where:
   - Window 10/11
   - MacOS
   - Linux
-
+##
 **2. Setup steps:**
 - For Windows:
   - Install Python from the official website.
@@ -112,7 +112,7 @@ python -m pip install --upgrade pip
 - Ensure consistent Python versions across the team.
 
 
-## Follow these steps to contribute to the project:
+# *Follow these steps to contribute to the project:*
 - Fork the main repository on GitHub.
 - Clone your fork:
 
@@ -155,7 +155,7 @@ git push -f origin feature-name
 
 - Create a Pull Request from your feature branch to the upstream main branch.
 
-# Key Points for Contributors
+# *Key Points for Contributors*
 - Never commit directly to main or develop.
 - Regularly sync your fork with the upstream repository.
 - Rebase feature branches before submitting PRs.
