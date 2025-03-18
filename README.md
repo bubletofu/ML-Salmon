@@ -1,18 +1,18 @@
-## About
+# About
 This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh University of Technology (HCMUT), containing the source code and the dataset used for both Assignment 1 and 2 of the course. 
 
 
-## ML_Salmon group members
-### Assignment 1 contribution:
+# ML_Salmon group members
+** Assignment 1 contribution: **
 - Võ Trúc Sơn: Decision tree & Neutral Network implement
 - Lê Văn Đức Anh: Bayesian Graphical implement
 - Cao Quế Phương: Data preprocessing & HMM Graphical implement 
 - Nguyễn Đức Hạnh Nhi: Decision tree & Naive Bayes implement
 - Nông Thục Khuê: Data preprocessing & HMM Graphical implement
 
-### Assignment 2 contribution:
+** Assignment 2 contribution: **
 
-## Structure
+# Structure
 ```
 project_root/
 ├── README.md
@@ -54,7 +54,7 @@ Where:
 - `reports/`: Analysis reports and final project documentation.
 - `tests/`: Unit tests for code validation.
 
-## Setup
+# Setup
 **1. Environment requirement:**
 - Python version: at least 3.9 (Recommended: 3.11)
 - Supported operating systems:
