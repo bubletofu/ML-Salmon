@@ -1,4 +1,4 @@
-## About
+# About
 This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh University of Technology (HCMUT). It serves as a centralized resource for students to access course materials, homework solutions, code, and project documentation.
 
 
