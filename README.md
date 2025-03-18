@@ -1,8 +1,8 @@
-# About
+## About
 This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh University of Technology (HCMUT), containing the source code and the dataset used for both Assignment 1 and 2 of the course. 
 
 
-# ML_Salmon group members
+## ML_Salmon group members
 - Võ Trúc Sơn: Decision tree & Neutral Network implement
 - Lê Văn Đức Anh: Bayesian Graphical implement
 - Cao Quế Phương: Data preprocessing & HMM Graphical implement 
