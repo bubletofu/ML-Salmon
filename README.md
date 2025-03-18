@@ -3,12 +3,13 @@ This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh U
 
 
 ## ML_Salmon group members
+### Assignment 1 contribution
 - Võ Trúc Sơn: Decision tree & Neutral Network implement
 - Lê Văn Đức Anh: Bayesian Graphical implement
 - Cao Quế Phương: Data preprocessing & HMM Graphical implement 
 - Nguyễn Đức Hạnh Nhi: Decision tree & Naive Bayes implement
 - Nông Thục Khuê: Data preprocessing & HMM Graphical implement
-
+### Assignment 1 contribution
 
 ## Structure
 ```
