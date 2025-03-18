@@ -70,6 +70,12 @@ class DecisionTree:
         dt.train(X, y)
         print("Evaluation Metrics:", dt.evaluate())
 
+        # Save the trained model
+        model_save_path = r"C:\Users\ASUS\Documents\MachineLearning\ML-Salmon\ML-Salmon\models_trained\trained_decision_tree.pkl"
+        os.makedirs(os.path.dirname(model_save_path), exist_ok=True)  # Ensure the directory exists
+        dt.save_model(model_save_path)
+        print(f"Model saved to {model_save_path}")
+
 # Call main() outside the class definition
 if __name__ == '__main__':
     DecisionTree.main()
