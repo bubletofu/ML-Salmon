@@ -41,10 +41,7 @@ project_root/
 │   └── test_models.py                  # File test cho các mô hình
 ├── requirements.txt                    # Danh sách thư viện phụ thuộc
 └── .gitignore                          # File bỏ qua cho Git
-<<<<<<< HEAD
 
-=======
->>>>>>> 7a5a84e5720d1663ae0c001e5782a81c8c2d0fc4
 ```
 
 Where:
@@ -121,42 +118,41 @@ python -m pip install --upgrade pip
 
 ```
 git clone https://github.com/bubletofu/ML-Salmon.git
-git remote add upstream https://github.com/bubletofu/ML-Salmon.git
 ```
 
-- Create a feature branch:
+- Create a origin branch:
 
 ```
-git checkout -b feature/feature-name
+git checkout branchName
 ```
 
 - Keep your fork update:
 
 ```
-git fetch upstream
-git checkout develop
-git merge upstream/develop
-git push origin develop
+git pull origin branchName
+git checkout main
+git merge branchName
+git pull origin main
+git add .
+git commit -m "Merge from branchName"
+git push origin main
 ```
 
-- Develop feature branch:
+- Develop origin branch:
 
 ```
 git add .
 git commit -m "description"
-git push origin feature-name
+git push origin branchName
 ```
 
-- Rebase before submitting a Pull Request (PR):
+- Pull request branch:
 
 ```
-git checkout feature-name
-git fetch upstream
-git rebase upstream/develop
-git push -f origin feature-name
+git checkout branchName
+git pull origin branchName
 ```
 
-- Create a Pull Request from your feature branch to the upstream main branch.
 
 # *Key Points for Contributors*
 - Never commit directly to main or develop.
