@@ -17,7 +17,7 @@ This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh U
 project_root/
 ├── README.md
 ├── LICENSE
-├── data/                                # Dữ liệu đầu vào
+├── data/                               # Dữ liệu đầu vào
 │   ├── aclImdb/                        # Tập dữ liệu IMDb
 │   │   ├── train/                      # Dữ liệu huấn luyện
 │   │   │   ├── neg/                    # Đánh giá tiêu cực
@@ -29,12 +29,18 @@ project_root/
 │   ├── trained_bayesian_network.pkl    # Mô hình Bayesian Network đã lưu
 │   ├── trained_decision_tree.pkl       # Mô hình Decision Tree đã lưu
 │   └── trained_neural_network.pkl      # Mô hình Neural Network đã lưu
+│   └── trained_naive_bayyesian.pkl     # Mô hình Naive Bayes đã lưu
+│   └── trained_hmm_model.pkl           # Mô hình HMM đã lưu
 ├── src/                                # Nguồn code
 │   ├── models/                         # File mô hình
 │   │   ├── predict_model.py            # File dự đoán
-│   │   ├── train_model_bayesian.py     # File huấn luyện Bayesian
-│   │   ├── train_model_decision.py     # File huấn luyện Decision Tree
-│   │   └── train_model_neural.py       # File huấn luyện Neural Network
+│   │   ├── predict.py                  # File show metrics của model
+│   │   ├── BayesianNetwork.py          # File train mô hình Bayesian Network
+│   │   ├── dT.py                       # File train mô hình decision tree
+│   │   ├── NN.py                       # File train mô hình neural network
+│   │   ├── HMM.py                      # File train mô hình HMM
+│   │   ├── dT.py                       # File train mô hình decision tree
+│   │   ├── NaiveBayes.py               # File train mô hình Naive Bayes
 │   ├── __init__.py                     # Khởi tạo package
 ├── tests/                              # Unit tests
 │   ├── __init__.py                     # Khởi tạo module test
