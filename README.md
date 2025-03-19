@@ -41,7 +41,10 @@ project_root/
 │   └── test_models.py                  # File test cho các mô hình
 ├── requirements.txt                    # Danh sách thư viện phụ thuộc
 └── .gitignore                          # File bỏ qua cho Git
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7a5a84e5720d1663ae0c001e5782a81c8c2d0fc4
 ```
 
 Where:
