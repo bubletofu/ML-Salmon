@@ -161,9 +161,9 @@ git pull origin branchName
 - Remember to checkout your branch and pull before code
 - Use conventional and standard commit messages.
 
-## Model Overview
-# Decision tree
-# Neural Network
-# Naive Bayesian
-# Bayesian Network
-# HMM
+# Model Overview
+## Decision tree
+## Neural Network
+## Naive Bayesian
+## Bayesian Network
+## HMM
