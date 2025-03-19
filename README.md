@@ -106,11 +106,6 @@ python -m pip install --upgrade pip
   - macOS: Install Xcode Command Line Tools.
   - Linux: Install the build-essential package.
 
-# Workflow
-- Always activate the virtual environment before starting development.
-- Update requirements.txt whenever new dependencies are added.
-- Ensure consistent Python versions across the team.
-
 
 # *Follow these steps to contribute to the project:*
 - Fork the main repository on GitHub.
