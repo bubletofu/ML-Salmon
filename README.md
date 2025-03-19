@@ -163,7 +163,6 @@ git pull origin branchName
 
 # Model Overview
 ## Decision tree
-### Overview of Decision Tree  
 
 #### What is a Decision Tree?  
 
