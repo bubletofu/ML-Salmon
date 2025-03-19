@@ -163,6 +163,63 @@ git pull origin branchName
 
 # Model Overview
 ## Decision tree
+### Overview of Decision Tree  
+
+#### What is a Decision Tree?  
+
+A Decision Tree is a machine learning model used for solving classification and regression problems. It works like a tree diagram, where each **node** represents a question or decision, each **branch** represents a choice, and each **leaf** represents the final outcome (a label or predicted value). Imagine playing a game of "Guess the Object" with your friends: you ask questions like, *"Is it an animal?"* and then *"Does it have fur?"* to narrow down the answer—Decision Trees operate in a similar way!  
+
+#### How Decision Trees Work  
+
+1. **Building the Tree**:  
+   - The model starts with a **root node**, containing all the data.  
+   - It selects a feature and a threshold to split the data into two or more groups. For example, if classifying movies as *good* or *bad* based on length, a question could be: *"Is the movie longer than 120 minutes?"*  
+   - The feature selection is based on criteria such as **Gini Index** (measuring group purity) or **Information Gain** (measuring the reduction in uncertainty after splitting).  
+   - This process repeats for each subgroup, generating new nodes and branches until:  
+     - All data in a group belong to the same class (pure leaves).  
+     - A maximum tree depth is reached, or no more useful features remain for splitting.  
+
+2. **Making Predictions**:  
+   - For new data, the model starts at the root node, follows branches based on feature values, and reaches a leaf node to make a prediction.  
+   - Example: If a movie is 150 minutes long (greater than 120 minutes) and was produced after 2000, the tree might predict it as *good*.  
+
+#### Advantages of Decision Trees  
+
+- **Easy to understand and visualize**: Decision Trees resemble flowcharts, making them intuitive even for non-experts.  
+- **No need for data normalization**: Unlike some models, Decision Trees don’t require feature scaling.  
+- **Handles both numerical and categorical data**: Works well with features like movie length (numerical) or genre (categorical).  
+
+#### Disadvantages of Decision Trees  
+
+- **Prone to overfitting**: A deep tree may learn noise from the training data, leading to poor generalization.  
+- **Sensitive to data changes**: A small modification in data can alter the tree’s structure significantly.  
+- **Not always the best for complex problems**: Compared to models like Neural Networks, Decision Trees may perform worse on intricate tasks like text classification.  
+
+#### Real-World Applications  
+
+- **Email classification**: Identifying whether an email is *spam* or *not spam* based on features like keywords and email length.  
+- **Medical diagnosis**: Predicting whether a patient has a disease based on symptoms (e.g., fever, cough).  
+- **Customer segmentation**: Determining whether a customer will buy a product based on age, income, and preferences.  
+
+#### Simple Example  
+
+Suppose we want to predict whether a student will *pass* or *fail* an exam based on study hours and test scores:  
+- Data: [5 hours, 8 score, Pass], [2 hours, 4 score, Fail], [6 hours, 7 score, Pass].  
+- The tree might be structured like this:  
+  - Root node: *"Study hours > 3?"*  
+    - If *Yes* → *"Score > 6?"* → Pass.  
+    - If *No* → Fail.  
+- Prediction: A student who studies for 4 hours and scores 9 → *Pass*.  
+
+#### Improving Decision Trees  
+
+- **Limit tree depth (`max_depth`)**: Helps prevent overfitting.  
+- **Use Random Forest**: Combining multiple Decision Trees improves accuracy.  
+- **Preprocess data**: Removing noise and selecting better features enhances performance.  
+
+### Conclusion  
+
+Decision Trees are simple yet powerful tools in machine learning, especially when interpretability is important. While they have limitations, they serve as the foundation for advanced models like Random Forest and Gradient Boosting. If you're new to machine learning, Decision Trees are a great starting point to understand how models make "decisions" based on data!
 ## Neural Network
 ## Naive Bayesian
 ## Bayesian Network
