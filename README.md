@@ -156,9 +156,9 @@ git pull origin branchName
 
 
 # *Key Points for Contributors*
-- Never commit directly to main or develop.
-- Regularly sync your fork with the upstream repository.
-- Rebase feature branches before submitting PRs.
+- Only leader commit to main, member please create branch for committion
+- Remember to add commit message for easily following future development
+- Remember to checkout your branch and pull before code
 - Use conventional and standard commit messages.
 
 
