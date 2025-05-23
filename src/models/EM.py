@@ -2,6 +2,7 @@
 import os
 import pandas as pd
 import pickle
+import joblib
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
@@ -9,19 +10,21 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, VotingC
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import cross_val_score
+import matplotlib
+matplotlib.use('Agg')  # Sử dụng backend Agg để tránh lỗi Tcl/Tk
 import matplotlib.pyplot as plt
-import joblib  # Để lưu và tải mô hình/TF-IDF
-from glob import glob  # Để đọc file nhanh hơn
+from glob import glob
 import time
-
-# Hàm đọc dữ liệu nhanh hơn với glob
+import sys
+sys.path.append(r'C:\Users\ASUS\Documents\MachineLearning\ML-Salmon\ML-Salmon\src\visualization')
+import em_visualize as visualize
+# Hàm đọc dữ liệu
 def load_imdb_data(data_dir, max_samples_per_class=None):
     print(f"Loading data from {data_dir}...")
     start_time = time.time()
     data = []
     labels = []
     
-    # Đọc file từ thư mục pos
     pos_files = glob(os.path.join(data_dir, 'pos', '*.txt'))
     if max_samples_per_class:
         pos_files = pos_files[:max_samples_per_class]
@@ -38,7 +41,6 @@ def load_imdb_data(data_dir, max_samples_per_class=None):
     
     print(f"Loaded {len(data)} positive samples in {time.time() - start_time:.2f} seconds")
     
-    # Đọc file từ thư mục neg
     neg_files = glob(os.path.join(data_dir, 'neg', '*.txt'))
     if max_samples_per_class:
         neg_files = neg_files[:max_samples_per_class]
@@ -60,13 +62,13 @@ def load_imdb_data(data_dir, max_samples_per_class=None):
 train_dir = r'C:\Users\ASUS\Documents\MachineLearning\ML-Salmon\ML-Salmon\data\aclImdb\train'
 test_dir = r'C:\Users\ASUS\Documents\MachineLearning\ML-Salmon\ML-Salmon\data\aclImdb\test'
 
-# Đọc dữ liệu (không giới hạn mẫu để dùng toàn bộ dataset)
+# Đọc dữ liệu
 print("Loading training data...")
-X_train, y_train = load_imdb_data(train_dir)  # Dùng toàn bộ 25,000 mẫu
+X_train, y_train = load_imdb_data(train_dir)  # Toàn bộ 25,000 mẫu
 print("Loading test data...")
-X_test, y_test = load_imdb_data(test_dir)    # Dùng toàn bộ 25,000 mẫu
+X_test, y_test = load_imdb_data(test_dir)    # Toàn bộ 25,000 mẫu
 
-# Tiền xử lý dữ liệu và lưu ma trận TF-IDF
+# Tiền xử lý dữ liệu
 tfidf_file = 'tfidf_matrices.pkl'
 if os.path.exists(tfidf_file):
     print("Loading precomputed TF-IDF matrices...")
@@ -79,14 +81,12 @@ else:
     X_train_tfidf = vectorizer.fit_transform(X_train)
     X_test_tfidf = vectorizer.transform(X_test)
     print(f"TF-IDF preprocessing done in {time.time() - start_time:.2f} seconds")
-    
-    # Lưu ma trận TF-IDF để tái sử dụng
     with open(tfidf_file, 'wb') as f:
         pickle.dump((X_train_tfidf, X_test_tfidf, vectorizer), f)
 
-# Base models (tối ưu hóa để tăng tốc)
+# Base models
 base_models = [
-    ('dt', DecisionTreeClassifier(max_depth=10, random_state=42)),  # Giới hạn độ sâu cây
+    ('dt', DecisionTreeClassifier(max_depth=10, random_state=42)),
     ('lr', LogisticRegression(max_iter=1000, random_state=42)),
     ('nb', MultinomialNB())
 ]
@@ -98,7 +98,7 @@ rf_model = RandomForestClassifier(n_estimators=50, max_depth=20, n_jobs=-1, rand
 rf_model.fit(X_train_tfidf, y_train)
 y_pred_rf = rf_model.predict(X_test_tfidf)
 print(f"Random Forest training completed in {time.time() - start_time:.2f} seconds")
-joblib.dump(rf_model, 'rf_model.pkl')  # Lưu mô hình
+joblib.dump(rf_model, 'rf_model.pkl')
 
 # Boosting with AdaBoost
 print("Training AdaBoost...")
@@ -118,7 +118,7 @@ y_pred_voting = voting_clf.predict(X_test_tfidf)
 print(f"Voting Classifier training completed in {time.time() - start_time:.2f} seconds")
 joblib.dump(voting_clf, 'voting_model.pkl')
 
-# Stacking Classifier (chạy riêng nếu cần vì chậm)
+# Stacking Classifier
 print("Training Stacking Classifier...")
 start_time = time.time()
 stacking_clf = StackingClassifier(estimators=base_models, final_estimator=LogisticRegression(max_iter=1000), n_jobs=-1)
@@ -127,24 +127,41 @@ y_pred_stack = stacking_clf.predict(X_test_tfidf)
 print(f"Stacking Classifier training completed in {time.time() - start_time:.2f} seconds")
 joblib.dump(stacking_clf, 'stacking_model.pkl')
 
-# Evaluate models
-print("\nRandom Forest Results:")
-print("Accuracy:", accuracy_score(y_test, y_pred_rf))
-print(classification_report(y_test, y_pred_rf))
+# Evaluate models and save results
+with open('results.txt', 'w') as f:
+    print("\nRandom Forest Results:")
+    f.write("Random Forest Results:\n")
+    rf_acc = accuracy_score(y_test, y_pred_rf)
+    print("Accuracy:", rf_acc)
+    f.write(f"Accuracy: {rf_acc}\n")
+    print(classification_report(y_test, y_pred_rf))
+    f.write(classification_report(y_test, y_pred_rf) + "\n")
 
-print("\nAdaBoost Results:")
-print("Accuracy:", accuracy_score(y_test, y_pred_ada))
-print(classification_report(y_test, y_pred_ada))
+    print("\nAdaBoost Results:")
+    f.write("\nAdaBoost Results:\n")
+    ada_acc = accuracy_score(y_test, y_pred_ada)
+    print("Accuracy:", ada_acc)
+    f.write(f"Accuracy: {ada_acc}\n")
+    print(classification_report(y_test, y_pred_ada))
+    f.write(classification_report(y_test, y_pred_ada) + "\n")
 
-print("\nVoting Classifier Results:")
-print("Accuracy:", accuracy_score(y_test, y_pred_voting))
-print(classification_report(y_test, y_pred_voting))
+    print("\nVoting Classifier Results:")
+    f.write("\nVoting Classifier Results:\n")
+    voting_acc = accuracy_score(y_test, y_pred_voting)
+    print("Accuracy:", voting_acc)
+    f.write(f"Accuracy: {voting_acc}\n")
+    print(classification_report(y_test, y_pred_voting))
+    f.write(classification_report(y_test, y_pred_voting) + "\n")
 
-print("\nStacking Classifier Results:")
-print("Accuracy:", accuracy_score(y_test, y_pred_stack))
-print(classification_report(y_test, y_pred_stack))
+    print("\nStacking Classifier Results:")
+    f.write("\nStacking Classifier Results:\n")
+    stack_acc = accuracy_score(y_test, y_pred_stack)
+    print("Accuracy:", stack_acc)
+    f.write(f"Accuracy: {stack_acc}\n")
+    print(classification_report(y_test, y_pred_stack))
+    f.write(classification_report(y_test, y_pred_stack) + "\n")
 
-# Cross-validation for Random Forest (chỉ chạy nếu cần, vì chậm)
+# Cross-validation for Random Forest
 print("\nPerforming cross-validation for Random Forest...")
 start_time = time.time()
 cv_scores_rf = cross_val_score(rf_model, X_train_tfidf, y_train, cv=3, n_jobs=-1)
@@ -152,17 +169,22 @@ print(f"Random Forest Cross-validation scores: {cv_scores_rf.mean():.4f} (+/- {c
 print(f"Cross-validation completed in {time.time() - start_time:.2f} seconds")
 
 # Plot model comparison
-accuracies = [
-    accuracy_score(y_test, y_pred_rf),
-    accuracy_score(y_test, y_pred_ada),
-    accuracy_score(y_test, y_pred_voting),
-    accuracy_score(y_test, y_pred_stack)
-]
+accuracies = [rf_acc, ada_acc, voting_acc, stack_acc]
 models = ['Random Forest', 'AdaBoost', 'Voting', 'Stacking']
+plt.figure(figsize=(8, 6))
 plt.bar(models, accuracies, color=['#4CAF50', '#2196F3', '#FFC107', '#FF5722'])
 plt.xlabel('Model')
 plt.ylabel('Accuracy')
 plt.title('Model Performance Comparison')
 plt.ylim(0, 1)
 plt.savefig('model_comparison.png')
-plt.show()
+plt.close()  # Đóng figure để tránh lỗi
+
+# Generate visualizations for all models
+models = {
+    'random_forest': rf_model,
+    'adaboost': ada_model,
+    'voting': voting_clf,
+    'stacking': stacking_clf
+}
+visualize.generate_visualizations(models, X_test_tfidf, y_test, output_dir="models_trained/plots")
