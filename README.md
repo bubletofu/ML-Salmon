@@ -1,5 +1,6 @@
 # About
 This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh University of Technology (HCMUT), containing the source code and the dataset used for both Assignment 1 and 2 of the course. 
+GIT url: 
 
 
 ## ML_Salmon group members
@@ -11,6 +12,10 @@ This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh U
 - Nông Thục Khuê: Data preprocessing & HMM Graphical implement
 
 ***Assignment 2 contribution:***
+- Võ Trúc Sơn & Nguyễn Đức Hạnh Nhi: Ensemble Method + Data preparation
+- Lê Văn Đức Anh: Discriminative Models
+- Cao Quế Phương: Support Vector Machines
+- Nông Thục Khuê: Dimension Reduction
 
 # Structure
 ```
