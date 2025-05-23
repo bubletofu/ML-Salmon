@@ -58,11 +58,11 @@ def plot_roc_auc(y_true, y_scores, file_path):
     plt.close()
 
 # Main function to execute visualizations
-def generate_visualizations(svm_model, X_test, test_labels, output_dir="models_trained/plots"):
+def generate_visualizations(model, X_test, test_labels, output_dir="models_trained/plots"):
     os.makedirs(output_dir, exist_ok=True)
 
     # Generate the prediction results
-    y_pred = svm_model.predict(X_test)
+    y_pred = model.predict(X_test)
 
     # Plot the classification report
     classification_report_path = os.path.join(output_dir, 'classification_report.png')
