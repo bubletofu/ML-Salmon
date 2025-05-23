@@ -6,10 +6,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
-from visualization.visualize import generate_visualizations
-import sys
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
+import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from visualization.visualize import generate_visualizations
 
 # Define base data path
 BASE_DATA_PATH = "data/aclImdb"
@@ -37,15 +41,16 @@ def load_data(data_path):
 
 def pca():
     # Load training and test data
+    dir = r"/Users/thuckhue/Desktop/HCMUT/Machine_Learning/ML-Salmon/data/aclImdb"
     try:
-        train_texts, train_labels = load_data(os.path.join(BASE_DATA_PATH, "train"))
-        test_texts, test_labels = load_data(os.path.join(BASE_DATA_PATH, "test"))
+        train_texts, train_labels = load_data(os.path.join(dir, "train"))
+        test_texts, test_labels = load_data(os.path.join(dir, "test"))
     except FileNotFoundError as e:
         print(f"Error: {e}")
         exit(1)
 
     # Split training data
-    X_train_texts, X_val_texts, y_train, y_val = train_test_split(
+    X_train_texts, X_test_texts, y_train, y_test = train_test_split(
         train_texts, train_labels, test_size=0.2, random_state=42
     )
 
@@ -58,20 +63,18 @@ def pca():
         sublinear_tf=True,
     )
     X_train = vectorizer.fit_transform(X_train_texts)
-    X_val = vectorizer.transform(X_val_texts)
+    X_val = vectorizer.transform(X_test_texts)
     X_test_tfidf = vectorizer.transform(test_texts)
 
     # Standardize the data
     scaler = StandardScaler(with_mean=False)
     X_train_scaled = scaler.fit_transform(X_train)
-    X_val_scaled = scaler.transform(X_val)
+    # X_val_scaled = scaler.transform(X_val)
     X_test_scaled = scaler.transform(X_test_tfidf)
 
     # Apply PCA
     pca_model = PCA(n_components=2)
-    X_train_pca = pca_model.fit_transform(X_train_scaled.toarray())
-    X_val_pca = pca_model.transform(X_val_scaled.toarray())
-    X_test_pca = pca_model.transform(X_test_scaled.toarray())
+    X_train_pca = pca_model.fit_transform(X_train_scaled.toarray())  
 
     # Save models
     os.makedirs("models_trained", exist_ok=True)
@@ -79,29 +82,29 @@ def pca():
     joblib.dump(vectorizer, "models_trained/pca_vectorizer.pkl")
     joblib.dump(scaler, "models_trained/pca_scaler.pkl")
 
-    # Visualization
-    svm_model = joblib.load("models_trained/trained_svm_model.pkl")
-    generate_visualizations(svm_model, X_test_pca, test_labels, output_dir="models_trained/plots")
+    # Using Logistic Regression for classification
+    # Split the PCA-transformed data for validation
+    X_train_split, X_val_split, y_train_split, y_val_split = train_test_split(
+        X_train_pca, y_train, test_size=0.2, random_state=42
+    )
+    clf = LogisticRegression()
+    clf.fit(X_train_split, y_train_split)
 
-def predict(texts, model_path='models_trained/pca_model.pkl', vectorizer_path='models_trained/pca_vectorizer.pkl', scaler_path='models_trained/pca_scaler.pkl'):
-    if not os.path.exists(model_path) or not os.path.exists(vectorizer_path) or not os.path.exists(scaler_path):
-        raise FileNotFoundError("Model, vectorizer, or scaler file not found.")
+    # Transform test data using PCA
+    X_test_pca = pca_model.transform(X_test_scaled.toarray())
+    y_pred = clf.predict(X_test_pca)
+    accuracy = accuracy_score(test_labels, y_pred)
+    f1 = f1_score(test_labels, y_pred, average='weighted')
 
-    # Load vectorizer, scaler and PCA model
-    vectorizer = joblib.load(vectorizer_path)
-    scaler = joblib.load(scaler_path)
-    pca_model = joblib.load(model_path)
+    print("Accuracy:", round(accuracy, 4))
+    print("F1 Score:", round(f1, 4))
 
-    # Vectorize input texts
-    X_tfidf = vectorizer.transform(texts)
-
-    # Standardize
-    X_scaled = scaler.transform(X_tfidf)
-
-    # Apply PCA
-    X_pca = pca_model.transform(X_scaled.toarray())
-
-    return X_pca
-
+    cm = confusion_matrix(test_labels, y_pred, labels=[0, 1])
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["Negative", "Positive"])
+    disp.plot(cmap=plt.cm.Blues)
+    plt.title("Confusion Matrix")
+    plt.grid(False)
+    plt.show()
+    
 if __name__ == "__main__":
     pca()
