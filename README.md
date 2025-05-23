@@ -281,3 +281,9 @@ Suppose we want to classify emails as either *spam* or *not spam*. We extract fe
 ### Conclusion  
 
 SVM is a powerful and versatile model, particularly effective in high-dimensional spaces, and is commonly used for classification tasks in text and image data. While it can be computationally expensive, it often provides robust performance, especially with clear margins of separation. If you're tackling binary classification problems with a limited amount of data, SVM is a great choice.
+
+## Dimension Reduction (PCA/LDA)
+
+## Ensemble method
+
+## Discriminative Models
