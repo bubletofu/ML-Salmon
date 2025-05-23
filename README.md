@@ -226,6 +226,26 @@ Suppose we want to predict whether a student will *pass* or *fail* an exam based
 Decision Trees are simple yet powerful tools in machine learning, especially when interpretability is important. While they have limitations, they serve as the foundation for advanced models like Random Forest and Gradient Boosting. If you're new to machine learning, Decision Trees are a great starting point to understand how models make "decisions" based on data!
 ## Neural Network
 ## Naive Bayesian
+### What is Naive Bayes?
+Naive Bayes is a probabilistic machine learning algorithm primarily used for classification tasks. It is based on Bayes' Theorem, a mathematical formula that calculates the probability of an event given prior knowledge. The "naive" part comes from the assumption that all features in the data are independent of each other, which simplifies calculations. Think of it like guessing the likelihood of rain based on independent clues like cloudiness and humidity—Naive Bayes combines these clues to make a prediction!
+
+### How Naive Bayes Works
+
+1. Understanding Bayes' Theorem:
+
+- Naive Bayes uses Bayes' Theorem to compute the probability of a class given a set of features:
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>C</mi><mi mathvariant="normal">∣</mi><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mi mathvariant="normal">∣</mi><mi>C</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>P</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">P(C|X) = \frac{P(X|C) \cdot P(C)}{P(X)}</annotation></semantics></math>
+
+- <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>C</mi><mi mathvariant="normal">∣</mi><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(C|X)</annotation></semantics></math>: Probability of class <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> given features <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> (posterior probability).
+- <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mi mathvariant="normal">∣</mi><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X|C)</annotation></semantics></math>: Probability of features <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> given class <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> (likelihood).
+- <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(C)</annotation></semantics></math>: Probability of class <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> (prior probability).
+- <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X)</annotation></semantics></math>: Probability of features <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> (evidence, often ignored as it’s constant for all classes).
+
+
+- The algorithm picks the class with the highest posterior probability.
+
+
+
 ## Bayesian Network
 ## HMM
 ## SVM
