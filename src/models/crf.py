@@ -118,4 +118,86 @@ if __name__ == '__main__':
 
     # Ví dụ
     sample = ["This movie was fantastic with great performances."]
-    print(predict_sentiment(sample))
+    print(predict_sentiment(sample))yyrrr4f
+
+    import os
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import pandas as pd
+
+    from sklearn.metrics import classification_report, confusion_matrix, roc_curve, auc
+
+    def plot_classification_report_bin(y_true, y_pred, file_path):
+        report = classification_report(y_true, y_pred, output_dict=True)
+        df = pd.DataFrame(report).transpose()
+        plt.figure(figsize=(8,6))
+        plt.imshow(df.iloc[:-1, :-1], aspect='auto', interpolation='nearest')
+        plt.colorbar()
+        plt.xticks(range(len(df.columns)-1), df.columns[:-1], rotation=45)
+        plt.yticks(range(len(df.index)-1), df.index[:-1])
+        plt.title('Classification Report')
+        plt.tight_layout()
+        plt.savefig(file_path, dpi=300)
+        plt.close()
+
+    def plot_confusion_matrix_bin(y_true, y_pred, file_path):
+        cm = confusion_matrix(y_true, y_pred)
+        plt.figure(figsize=(6,6))
+        plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
+        plt.title('Confusion Matrix')
+        plt.xlabel('Predicted')
+        plt.ylabel('True')
+        for i in (0,1):
+            for j in (0,1):
+                plt.text(j, i, cm[i,j], 
+                        ha='center', va='center', color='white' if cm[i,j]>cm.max()/2 else 'black')
+        plt.xticks([0,1], ['NEG','POS'])
+        plt.yticks([0,1], ['NEG','POS'])
+        plt.tight_layout()
+        plt.savefig(file_path, dpi=300)
+        plt.close()
+
+    def plot_roc_auc_bin(y_true, y_score, file_path):
+        fpr, tpr, _ = roc_curve(y_true, y_score)
+        roc_auc = auc(fpr, tpr)
+        plt.figure(figsize=(6,6))
+        plt.plot(fpr, tpr, lw=2, label=f'AUC = {roc_auc:.2f}')
+        plt.plot([0,1], [0,1], linestyle='--')
+        plt.xlabel('False Positive Rate')
+        plt.ylabel('True Positive Rate')
+        plt.title('ROC Curve')
+        plt.legend(loc='lower right')
+        plt.tight_layout()
+        plt.savefig(file_path, dpi=300)
+        plt.close()
+
+    # 2) Hàm tổng hợp
+    def generate_visualizations_inline(model, X, y_seq, output_dir="models_trained/plots"):
+        os.makedirs(output_dir, exist_ok=True)
+
+        if any(isinstance(el, list) for el in y_seq):
+            y_seq = ['POS' if seq.count('POS') > seq.count('NEG') else 'NEG'
+                    for seq in y_seq]
+        
+        label_bin = np.array([1 if lab=='POS' else 0 for lab in y_seq])
+        
+        y_pred_seq = model.predict(X)
+        y_pred = np.array([1 if lab=='POS' else 0 for lab in y_pred_seq])
+        try:
+            y_score = model.decision_function(X)
+        except AttributeError:
+            y_score = np.array([pred_seq.count('POS')/len(pred_seq) 
+                                for pred_seq in model.crf.predict(X)])
+        
+        plot_classification_report_bin(label_bin, y_pred, 
+                                    os.path.join(output_dir, 'classification_report.png'))
+        plot_confusion_matrix_bin(label_bin, y_pred, 
+                                os.path.join(output_dir, 'confusion_matrix.png'))
+        plot_roc_auc_bin(label_bin, y_score, 
+                        os.path.join(output_dir, 'roc_auc_curve.png'))
+        
+        print(f"✅ Saved plots to {output_dir}")
+
+    os.makedirs("models_trained/plots/DM", exist_ok=True)
+    generate_visualizations_inline(wrapped_crf, X_val_feats, y_val, 
+                                output_dir="models_trained/plots/DM")
