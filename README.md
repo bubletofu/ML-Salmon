@@ -1,6 +1,6 @@
 # About
-This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh University of Technology (HCMUT), containing the source code and the dataset used for both Assignment 1 and 2 of the course. 
-GIT url: 
+- This repository is part of the Machine Learning Course (CO3117) at Ho Chi Minh University of Technology (HCMUT), containing the source code and the dataset used for both Assignment 1 and 2 of the course. 
+- GIT url: https://github.com/bubletofu/ML-Salmon.git
 
 
 ## ML_Salmon group members
